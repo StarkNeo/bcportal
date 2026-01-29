@@ -1,0 +1,61 @@
+.inicio-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+}
+
+.inicio-container h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.intro-text {
+  margin-top: 0.5rem;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.menu-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.menu-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #1f2937;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border-left: 4px solid #3b82f6;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.menu-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.menu-card p {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.menu-card.logout {
+  border-left-color: #ef4444;
+}
+
+.menu-card.logout:hover {
+  box-shadow: 0 6px 20px rgba(239,68,68,0.25);
+}

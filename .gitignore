@@ -1,0 +1,10 @@
+clientes.csv
+*.log
+node_modules/
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.DS_Store
+coverage/

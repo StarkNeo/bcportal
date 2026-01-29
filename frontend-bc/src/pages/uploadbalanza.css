@@ -1,0 +1,85 @@
+.upload-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  font-family: "Inter", sans-serif;
+}
+
+.upload-container h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+
+.logout-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  float: right;
+  transition: background 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #c0392b;
+}
+
+label {
+  display: block;
+  margin-top: 1.2rem;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  color: #333;
+}
+
+select,
+input[type="number"],
+input[type="file"] {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+select:focus,
+input[type="number"]:focus,
+input[type="file"]:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+button.upload-btn {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.8rem;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button.upload-btn:hover {
+  background: #217dbb;
+}
+
+.status-message {
+  margin-top: 1.5rem;
+  padding: 0.8rem;
+  background: #f4f6f8;
+  border-left: 4px solid #3498db;
+  border-radius: 4px;
+  color: #333;
+  font-size: 0.95rem;
+}
