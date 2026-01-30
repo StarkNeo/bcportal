@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import '../components/Navbar.css';
 
 export default function Logout({ setToken, setUserId, token }) {
   const navigate = useNavigate();
@@ -30,8 +31,8 @@ export default function Logout({ setToken, setUserId, token }) {
   };
 
   return (
-    <button onClick={handleLogout} className="nav-links">
-      Cerrar sesión
-    </button>
+    <input type="button" onClick={handleLogout} className="btn-navlike" value="Cerrar sesión" />
+     
+    
   );
 }

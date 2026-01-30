@@ -1,10 +1,10 @@
 const express = require('express');
 const passport = require('passport');
-const {register, login, authStatus, logout, setup2FA, verify2FA, reset2FA} = require('../controllers/authController');
+const {resetPassword, login, authStatus, logout, setup2FA, verify2FA, reset2FA, verify2FASetup} = require('../controllers/authController');
 const router = express.Router();
 
 //Registration Route
-router.post('/register',register);
+router.post('/reset-password',resetPassword);
 //Login Route
 //router.post('/login',passport.authenticate('local'),login);
 router.post('/login',login);
@@ -16,23 +16,16 @@ router.post('/logout', logout);
 
 //Se accesa a las siguientes rutas solo si el usuario está autenticado
 // 2FA Setup Route
-router.post('/setup-2fa',(req,res,next)=>{
-    console.log("Usuyario en setup-2fa:", req.isAuthenticated(), req.user);
-    if(req.isAuthenticated()){
-        return next();
-    }
-    return res.status(401).json({message: 'No autenticado'});
-},setup2FA);
+router.get('/setup-2fa',setup2FA);
+
+router.post('/verify-2fa-setup',verify2FASetup); 
 
 // 2FA Verification Route
 router.post('/verify-2fa',verify2FA);
+
 // Reset Route
-router.post('/2fa-reset',(req,res,next)=>{
-    if(req.isAuthenticated()){
-        return next();
-    }
-    return res.status(401).json({message: 'No autenticado'});
-},reset2FA);
+
+router.post('/2fa-reset',reset2FA);
 
 /*
 router.post('/login', async (req, res) => {

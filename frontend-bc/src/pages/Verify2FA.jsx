@@ -1,21 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
 import { useOutletContext } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Verify2FA() {
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
-  const {userId, setToken} = useOutletContext();
+  const {setToken} = useOutletContext();
   const navigate = useNavigate();
+  const location = useLocation();
+  const { userId } = location.state || {};
+  
+  useEffect(() => {
+      if(!userId){
+          navigate("/login");
+          return;
+      }
+  }, [userId, navigate]);
 
+
+  
   const handleVerify = async () => {
     try {
       const res = await axios.post("http://localhost:3001/auth/verify-2fa", {
         userId,
         code
       });
-
       localStorage.setItem("token", res.data.token);
       setToken(res.data.token);
 
@@ -34,6 +44,7 @@ export default function Verify2FA() {
         type="text"
         onChange={e => setCode(e.target.value)}
         placeholder="123456"
+
       />
 
       <button className="upload-btn" onClick={handleVerify}>

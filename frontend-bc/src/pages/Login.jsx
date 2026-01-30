@@ -9,12 +9,24 @@ export default function Login() {
   const [error, setError] = useState("");
   const {setUserId} = useOutletContext();
   const navigate = useNavigate();
-
+  
   const handleLogin = async () => {
     try {
       const res = await axios.post("http://localhost:3001/auth/login", { email, password });
       setUserId(res.data.userId);
-      navigate("/verificar");
+      if(res.data.userId && res.data.requiresPasswordReset){
+        navigate("/reset-password", { state: { userId: res.data.userId, email:email } });
+        return;
+      }
+      
+      if(res.data.requires2FASetup){
+        navigate("/setup-2fa", { state: { userId: res.data.userId } });
+        return;
+      }
+      else if(res.data.requires2FA){
+        navigate("/verificar", { state: { userId: res.data.userId } });
+        return;
+      }
     } catch (err) {
       setError(err.response?.data?.message || "Error en login");
     }

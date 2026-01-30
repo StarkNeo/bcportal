@@ -13,8 +13,7 @@ export const Carga = () => {
   const [month, setMonth] = useState("")
   const [rfc, setRfc] = useState("")
   const [clients, setClients] = useState([])
-  const {token, setToken} = useOutletContext();
-  console.log("TOKEN EN CARGA:", token);
+  const {token} = useOutletContext();
   
   useEffect(() => {
     const fetchClients = async () => {
