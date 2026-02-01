@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import requests from "../services/requests";
-import "./uploadbalanza.css";
+import "./carga.css";
 import Logout from "./Logout";
 import { useOutletContext } from "react-router-dom";
 
