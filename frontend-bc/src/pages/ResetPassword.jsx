@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import requests from "../services/requests";
 
 export default function ResetPassword() {
   const [error, setError] = useState("");
@@ -20,8 +20,9 @@ export default function ResetPassword() {
 
   const handleSignUp = async () => {
     try {
-      const res = await axios.post("http://localhost:3001/auth/reset-password", { userId, newPassword });
-      if(res.data.userId){
+      const res = await requests.resetPassword(userId, newPassword);
+      
+      if(res.userId){
         navigate("/login");
         return;
       }      

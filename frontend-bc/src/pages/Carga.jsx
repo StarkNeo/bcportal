@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import requests from "../services/requests";
 import "./carga.css";
-import Logout from "./Logout";
 import { useOutletContext } from "react-router-dom";
 
 export const Carga = () => {

@@ -1,7 +1,7 @@
 import { useState, useEffect} from "react";
-import axios from "axios";
 import { useOutletContext } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
+import requests from "../services/requests";
 
 export default function Verify2FA() {
   const [code, setCode] = useState("");
@@ -22,12 +22,10 @@ export default function Verify2FA() {
   
   const handleVerify = async () => {
     try {
-      const res = await axios.post("http://localhost:3001/auth/verify-2fa", {
-        userId,
-        code
-      });
-      localStorage.setItem("token", res.data.token);
-      setToken(res.data.token);
+      const res = await requests.verify2FA(userId, code);
+       
+      localStorage.setItem("token", res.token);
+      setToken(res.token);
 
       navigate("/inicio");
     } catch (err) {

@@ -1,20 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import '../components/Navbar.css';
+import requests from "../services/requests";
 
 export default function Logout({ setToken, setUserId, token }) {
   const navigate = useNavigate();
   
   const handleLogout = async () => {
     try {
-      await axios.post(
-        "http://localhost:3001/auth/logout",
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      );
-
+      await requests.logout(token);
+      
       // limpiar estado global
       setToken(null);
       setUserId(null);

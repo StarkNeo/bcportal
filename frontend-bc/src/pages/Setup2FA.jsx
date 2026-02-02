@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useOutletContext, useNavigate, useLocation } from 'react-router-dom';
+import requests from "../services/requests";
 
 const Setup2FA = () => {
     const [qrUrl, setQrUrl] = useState(null);
@@ -18,8 +18,8 @@ const Setup2FA = () => {
         }
         const fetchQrCode = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/auth/setup-2fa?userId=${userId}`);
-                setQrUrl(response.data.qrImageUrl);
+                const response = await requests.fetchQrCode(userId);
+                setQrUrl(response.qrImageUrl);
             } catch (error) {
                 console.error("Error fetching QR code:", error);
             };
@@ -29,10 +29,10 @@ const Setup2FA = () => {
 
     const handleVerify = async () => {
         try {
-            const response = await axios.post("http://localhost:3001/auth/verify-2fa-setup", { userId, code });
-            localStorage.setItem('token', response.data.token);
-            setToken(response.data.token);
-            setStatus(response.data.message);
+            const response = await requests.verify2FASetup(userId, code);
+            localStorage.setItem('token', response.token);
+            setToken(response.token);
+            setStatus(response.message);
             setTimeout(() => navigate("/inicio"), 1500);
 
         } catch (error) {
